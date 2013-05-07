@@ -1,8 +1,12 @@
 var express = require('express'),
 	swig    = require('swig'),
-	cons    = require('consolidate');
+	cons    = require('consolidate'),
+	fs      = require('fs');
 
-var app = express();
+var app = express(),
+	baseData = fs.readFileSync('./base-data.json').toString();
+
+var data = JSON.parse(baseData);
 
 swig.init({
 	cache : false
@@ -18,7 +22,9 @@ app.use( express.static('./public') );
 
 // Routes
 app.get('/', function (req, res) {
-	res.render('index');
+	res.render('index', {
+		posts : data
+	});
 });
 
 app.listen(3000);
