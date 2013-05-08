@@ -11,6 +11,11 @@ Run server
 
 	supervisor server
 
+Stylus
+
+	cd public/css
+	stylus -w
+
 ### Interesting links
 
 [Backbone](backbonejs.org)
