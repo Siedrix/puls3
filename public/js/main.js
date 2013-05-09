@@ -3,25 +3,25 @@ $(document).ready(function(){
 
 	window.routers.base = new Puls3.Routers.BaseRouter();
 	window.collections.articles = new Puls3.Collections.Articles();
+
+	window.collections.articles.on('add', function(model){
+		var view = new Puls3.Views.ArticleView(model);
+
+		view.render();
+
+		view.$el.insertAfter("#contenido > aside");
+	});
+
 	window.views.newArticle = new Puls3.Views.ArticleNewView( $('#contenido aside') );
 
 	window.ponyExpress = new PonyExpress({
-		io : "http://localhost:3000"
+		io : window.location.origin
 	});
 
 	window.ponyExpress.bind('connect', function(){
 		window.plugs.article = new PonyExpress.BackbonePlug({
 			collection : window.collections.articles
 		});
-	});
-
-	window.collections.articles.on('add', function(article){
-		if(window.app.state === "root"){
-			var view = new Puls3.Views.ArticleView(article);
-
-			view.render();
-			view.$el.appendTo('#contenido');
-		}
 	});
 
 	var all = $.get('/articles/all');

@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="/css/normalize.min.css">
         <link rel="stylesheet" href="/css/estilos.css">
 
+        {% if env === 'dev'%}
         <script src="/js/vendor/modernizr-2.6.2.min.js"></script>
         <script src="/js/vendor/jquery-1.9.1.min.js"></script>
         <script src="/js/vendor/underscore.js"></script>
@@ -30,6 +31,7 @@
         <script src="/js/backbone/views/article.js"></script>
         <script src="/js/backbone/views/articleExtended.js"></script>
         <script src="/js/backbone/views/articleNew.js"></script>
+        {% endif %}
     </head>
     <body>
 
@@ -123,7 +125,15 @@
         </script>  
         {% endraw %}      
 
+        {% if env === 'dev'%}
         <script src="/js/main.js"></script>
+        {% endif %}
+
+        {% if env === 'production'%}
+        <script src="/vendors.min.js"></script>
+        <script src="/app.min.js"></script>
+        {% endif %}
+
 
     </body>
 </html>

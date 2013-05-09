@@ -4,6 +4,8 @@ var express = require('express'),
 	fs      = require('fs'),
 	uuid    = require('node-uuid');
 
+var env = 'dev';
+
 var app      = express(),
 	baseData = fs.readFileSync('./base-data.json').toString(),
 	server   = require('http').createServer(app),
@@ -82,11 +84,13 @@ app.put('/articles/:id', function (req, res){
 });
 
 var home = function (req, res) {
-	res.render('index');
+	res.render('index',{
+		env : env
+	});
 };
 
 app.get('/', home);
 app.get('/article/:id', home);
 
 
-server.listen(3000);
+server.listen(4000);
