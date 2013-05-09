@@ -7,19 +7,27 @@
         <meta name="viewport" content="width=device-width">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-        <link rel="stylesheet" href="css/normalize.min.css">
-        <link rel="stylesheet" href="css/estilos.css">
+        <link rel="stylesheet" href="/css/normalize.min.css">
+        <link rel="stylesheet" href="/css/estilos.css">
 
-        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
-        <script src="js/vendor/jquery-1.9.1.min.js"></script>
-        <script src="js/vendor/underscore.js"></script>
-        <script src="js/vendor/backbone.js"></script>
+        <script src="/js/vendor/modernizr-2.6.2.min.js"></script>
+        <script src="/js/vendor/jquery-1.9.1.min.js"></script>
+        <script src="/js/vendor/underscore.js"></script>
+        <script src="/js/vendor/backbone.js"></script>
+        <script src="/js/vendor/swig.js"></script>
+
+        <script src="/js/init.js"></script>
+
+        <script src="/js/backbone/models/article.js"></script>
+        <script src="/js/backbone/collections/articles.js"></script>
+        <script src="/js/backbone/views/article.js"></script>
+        <script src="/js/backbone/routers/base.js"></script>
+
     </head>
     <body>
-
         <header>
             <figure id="header_logo">
-                <a href=""><img src="img/logo.png" alt="logo"></a>
+                <a href=""><img src="/img/logo.png" alt="logo"></a>
             </figure>
             <div id="header_titulo">
                 <h2>Puls3 - Dolor Sit amet</h2>
@@ -31,7 +39,7 @@
                 </nav>
             </div>
             <figure id="header_user">
-               <a href=""><img src="img/user.jpg"></a> 
+               <a href=""><img src="/img/user.jpg"></a> 
             </figure>
         </header>   
 
@@ -50,7 +58,7 @@
             </aside>
 
             {% for post in posts %}
-                <article class="contenido_item">
+<!--                 <article class="contenido_item">
                     <figure>
                         <a href="#"><img src="{{ post.image }}"></a>
                     </figure>
@@ -67,11 +75,34 @@
                             <a class="likes_down" href="#"><span aria-hidden="true" class="icon-arrow-down"></span></a>
                         </div>
                     </div>
-                </article>
+                </article> -->
             {% endfor %}
 
         </section>
 
-        <script src="js/main.js"></script>
+        {% raw %}
+        <script id="Article_tpl" type="text/template">
+            <article class="contenido_item">
+                <figure>
+                    <a href="#"><img src="{{ post.image }}"></a>
+                </figure>
+                <div class="item_info">
+                    <h2>{{ post.title }}</h2>
+                    <p class="item_posted">Posted by <a href="#">{{ post.user }}</a></p>
+                    <span aria-hidden="true" class="icon-heart-2"></span>
+                </div>
+                <div class="item_extra">
+                    <p class ="extra_tag">{{ post.tag }}</p>
+                    <div class="extra_likes">
+                        <a class="likes_up" href="#"><span aria-hidden="true" class="icon-arrow-up"></span></a>
+                        <div class="likes_numero">{{ post.votes }}</div>
+                        <a class="likes_down" href="#"><span aria-hidden="true" class="icon-arrow-down"></span></a>
+                    </div>
+                </div>
+            </article>        
+        </script>
+        {% endraw %}
+
+        <script src="/js/main.js"></script>
     </body>
 </html>
