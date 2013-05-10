@@ -1,6 +1,7 @@
 Puls3.Collections.ArticlesCollection = Backbone.Collection.extend({
     model: Puls3.Models.ArticleModel,
     url:"",
+    name: "articles",
     search : function(letters){
         if(letters == "") return this;
         var pattern = new RegExp(letters,"gi");

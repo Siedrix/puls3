@@ -12,13 +12,12 @@ Puls3.Routers.BaseRouter = Backbone.Router.extend({
 
 		console.log('root');
 
-		$('#contenido > div').show();
+		window.app.state = "root";
 	},
 	articleSingle : function(id){
 		console.log('articleSingle', id);
 
-		$('#contenido > div').hide();
-
-		$('#contenido #' + id).show();
+		window.app.state = "articleSingle";
+		window.app.article = id;
 	}
 });

@@ -1,5 +1,5 @@
 Puls3.Models.ArticleModel = Backbone.Model.extend({
-	url:"",
+	urlRoot:"/articles",
 	defaults:{
 
 	},
