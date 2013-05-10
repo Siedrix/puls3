@@ -4,6 +4,8 @@ var express = require('express'),
 	fs      = require('fs'),
 	uuid    = require('node-uuid');
 
+var env = "dev"; // "Production";
+
 var app      = express(),
 	baseData = fs.readFileSync('./base-data.json').toString(),
 	server   = require('http').createServer(app),
@@ -41,6 +43,8 @@ app.post('/articles', function (req, res){
 
 	data.push(req.body);
 
+	console.log('articles::create', req.body);
+
 	io.sockets.emit('articles::create', req.body);
 
 	res.send(200, {status:"Ok", id: req.body.id});
@@ -57,17 +61,17 @@ app.put('/articles/:id', function (req, res){
 		}
 	}
 
+	console.log('articles::update', req.body);
+
 	io.sockets.emit('articles::update', req.body);
 
 	res.send(200, {status:"Ok"});
-
-
-	res.send('put');
 });
 
 var home = function (req, res) {
 	res.render('index',{
-		posts : data
+		posts : data,
+		env   : env
 	});
 };
 
