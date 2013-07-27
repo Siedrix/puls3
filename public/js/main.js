@@ -43,5 +43,4 @@ $(document).ready(function(){
 	$('nav li:first').on('click', function(){
 		Backbone.history.navigate('', {trigger: true});
 	});
-
 });
